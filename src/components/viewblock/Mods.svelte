@@ -93,6 +93,7 @@
   import { browser } from "$app/environment";
   import { openExternal } from "$lib/opener";
   import { mapWithConcurrency } from "../../utils/concurrency";
+  import { fuzzyFilter } from "../../utils/fuzzy";
 
   /** Max parallel mod-update invocations to keep the Tauri IPC queue healthy. */
   const UPDATE_ALL_CONCURRENCY = 6;
@@ -138,36 +139,23 @@
   // Search state for Installed Mods filter (uses store for cross-component access)
   let installedSearchInputRef: HTMLInputElement | null = $state(null);
 
-  function matchesInstalledSearch(
-    name: string,
-    authorOrPublisher?: string | string[],
-  ): boolean {
-    const searchValue = $installedModsSearchStore;
-    if (!searchValue.trim()) return true;
-    const query = searchValue.toLowerCase().trim();
-    const normalizedName = name.toLowerCase();
-    if (normalizedName.includes(query)) return true;
-    if (authorOrPublisher) {
-      if (Array.isArray(authorOrPublisher)) {
-        return authorOrPublisher.some((a) => a.toLowerCase().includes(query));
-      }
-      return authorOrPublisher.toLowerCase().includes(query);
-    }
-    return false;
-  }
+  // Build the searchable text for a catalog / local mod.
+  const catalogModText = (m: Mod) => `${m.title} ${m.publisher ?? ""}`;
+  const localModText = (m: LocalMod) =>
+    `${m.name} ${(m.author ?? []).join(" ")}`;
 
-  // Filtered versions of enabled/disabled lists based on search
+  // Filtered versions of enabled/disabled lists based on fuzzy search.
   let filteredEnabledMods = $derived(
-    enabledMods.filter((m) => matchesInstalledSearch(m.title, m.publisher)),
+    fuzzyFilter(enabledMods, $installedModsSearchStore, catalogModText),
   );
   let filteredDisabledMods = $derived(
-    disabledMods.filter((m) => matchesInstalledSearch(m.title, m.publisher)),
+    fuzzyFilter(disabledMods, $installedModsSearchStore, catalogModText),
   );
   let filteredEnabledLocalMods = $derived(
-    enabledLocalMods.filter((m) => matchesInstalledSearch(m.name, m.author)),
+    fuzzyFilter(enabledLocalMods, $installedModsSearchStore, localModText),
   );
   let filteredDisabledLocalMods = $derived(
-    disabledLocalMods.filter((m) => matchesInstalledSearch(m.name, m.author)),
+    fuzzyFilter(disabledLocalMods, $installedModsSearchStore, localModText),
   );
 
   // Derived values for BulkActionBar
@@ -2960,6 +2948,18 @@
   let visibleDisabledLocal = $derived(
     filteredDisabledLocalMods.slice(0, renderLimitLocal),
   );
+
+  // Windowed views of the installed enabled/disabled catalog mods. These are
+  // sliced AFTER splitting by enabled state, so the render limit applies to
+  // each section independently. (Slicing the combined catalog first and then
+  // filtering would only ever surface whichever enabled mods happened to land
+  // in the top `renderLimitCatalog` of the full sorted list.)
+  let visibleEnabledCatalog = $derived(
+    filteredEnabledMods.slice(0, renderLimitCatalog),
+  );
+  let visibleDisabledCatalog = $derived(
+    filteredDisabledMods.slice(0, renderLimitCatalog),
+  );
   let observerLocal: IntersectionObserver | null = null;
 
   function scheduleHydration() {
@@ -3677,7 +3677,7 @@
               {/if}
 
               <!-- Virtual scroll sentinel for catalog mods - triggers loading more when visible -->
-              {#if visiblePaginatedMods.length < paginatedMods.length}
+              {#if visibleEnabledCatalog.length < filteredEnabledMods.length || visibleDisabledCatalog.length < filteredDisabledMods.length}
                 <div
                   bind:this={catalogSentinel}
                   class="virtual-scroll-sentinel"
