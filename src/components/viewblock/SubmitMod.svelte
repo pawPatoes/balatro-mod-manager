@@ -5,6 +5,7 @@
 
   const HELPER_URL = "https://bmi-helper.dasguney.com/";
   const INDEX_REPO_URL = "https://github.com/skyline69/Balatro-Mod-Index";
+  const README_URL = "https://github.com/skyline69/balatro-mod-index/blob/main/README.md";
 
   const open = async (url: string) => {
     try {
@@ -32,17 +33,22 @@
       <div>
         <h3>How it works</h3>
         <ol>
+          <li>Read the Submission rules.</li>
           <li>Open the Submission Helper in your browser.</li>
           <li>Fill in your mod's details (name, author, repository, etc.).</li>
           <li>The helper prepares a submission to the mod index for you.</li>
           <li>The maintainers review it, then your mod shows up in BMM.</li>
         </ol>
       </div>
-
       <div class="button-container">
         <button class="submit-button" on:click={() => open(HELPER_URL)}>
           <ExternalLink size={20} />
           <span>Open Submission Helper</span>
+        </button>
+      <div class="button-container">
+        <button class="readme-button" on:click={() => open(README_URL)}>
+          <ExternalLink size={20} />
+          <span>Read Submission Rules</span>
         </button>
         <button class="repo-button" on:click={() => open(INDEX_REPO_URL)}>
           <Github size={20} />
@@ -163,6 +169,32 @@
   }
 
   .submit-button:active {
+    transform: scale(0.95);
+  }
+  .readme-button {
+    background-color: #24292f;
+    border: 4px solid #f7f1e4;
+    border-radius: 8px;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-family: "M6X11", sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+  }
+
+  .readme-button:hover {
+    background-color: #32383f;
+    transform: scale(1.05);
+  }
+
+  .readme-button:active {
     transform: scale(0.95);
   }
 
