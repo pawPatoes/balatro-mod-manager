@@ -172,7 +172,7 @@
     transform: scale(0.95);
   }
   .readme-button {
-    background-color: #24292f;
+    background-color: #E10600;
     border: 4px solid #f7f1e4;
     border-radius: 8px;
     color: #fff;
