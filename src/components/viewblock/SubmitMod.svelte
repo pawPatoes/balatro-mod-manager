@@ -239,7 +239,8 @@
       font-size: 1.5rem;
     }
     .submit-button,
-    .repo-button {
+    .repo-button,
+    .readme-button{
       font-size: 1rem;
       padding: 0.4rem 0.8rem;
     }
