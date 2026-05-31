@@ -12,7 +12,7 @@ git clone https://github.com/skyline69/balatro-mod-manager
 
 # Contributing rules
 1. Don't contribute meaningless things.<!-- u can change this if u want :D -->
-2. Don't contribute mods with malware in them.
+2. Don't contribute anything with malware in it.
 3. Don't add any sort of watermark if you edited a text file.
 
 # How to remove your mod
