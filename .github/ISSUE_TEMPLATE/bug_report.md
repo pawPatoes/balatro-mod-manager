@@ -1,40 +1,76 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ""
-labels: bug
-assignees: ""
----
-(Make sure to replace text that is in single quotes like `this` with your own text! And delete this line!) 
-
-
-**Describe the bug**  
-
-`A clear and concise description of what the bug is.`
-
-**To Reproduce**
-Steps to reproduce the behavior:  
-
-
-`1.  Go to '...'`  
-`2. Click on '....'`  
-`3. Scroll down to '....'`  
-`4. See error`  
-
-**Expected behavior**  
-
-`A clear and concise description of what you expected to happen.`
-
-**Screenshots**  
-
-`If applicable, add screenshots to help explain your problem.`
-
-**Desktop (please complete the following information):**  
-
-
-- OS: [`e.g. iOS`]
-- Version [`e.g. 22`]
-- 
-**Additional context**
-  
-`Add any other context about the problem here.`
+name: Bug Report
+description: Report a Mod Manager bug (not mods themselves) where something is not working as expected in Mod Loader (not mods created by others), which does not crash the game.
+labels: [ "unverified", "bug" ]
+body:
+  - type: checkboxes
+    attributes:
+      label: Mod Issue
+      description: |
+        The Mod manager repository is for issues of *Mod manager*, not individual mods created by other developers.
+        When submitting a bug report, please make sure that the bug is *actually* related to ***Mod Manager itself*** and not to a mod or mod combination.
+        Failing to do this will get your issue *closed without explanation*.
+      options:
+        - label: I confirm that this bug is NOT related to a mod but directly to the mod manager itself.
+          required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: The platform you were using when this bug was encountered.
+      options:
+        - "MacOS"
+        - "Windows"
+        - "Linux"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Mod manager version
+      description: The version of Mod manageryou were using when this bug was encountered. If you do not know where to find this. Look in the bottom right of the manager.
+      placeholder: "Example: v0.4.1"
+    validations:
+      required: true
+  - type: textarea
+    id: mods
+    attributes:
+      label: Mods Installed
+      description: The mods and their respective versions used when this bug was encountered. If you were not using mods, please leave this field blank.
+      placeholder: "Example: Mod v1.0.0, Mod v0.1.0"
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen. Attach screenshots here as necessary.
+      placeholder: "Example: Expected to produce X by consuming Y."
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Actual Behavior
+      description: What happened despite your expectations. Attach screenshots here as necessary.
+      placeholder: "Example: Produced one X but Y was not consumed."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How to reproduce the bug.
+      placeholder: "Example: 1) I did X..."
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Any additional information you wish to provide. Please add anything which did not fit into the other sections here.
+      placeholder: "Example: This is likely caused by X because..."
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: Thank you for taking the time to fill out this bug report. 
