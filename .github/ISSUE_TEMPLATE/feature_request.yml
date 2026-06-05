@@ -4,11 +4,11 @@ labels: [ "feature" ]
 body:
   - type: checkboxes
     attributes:
-      label: Mod Issue
+      label: Mod Suggestion
       description: |
         The Mod manager repository is for features of *Mod manager*, not individual mods created by other developers.
         When submitting a feature request, please make sure that the feature is *actually* related to ***Mod Manager itself*** and not to a mod or mod combination.
-        Failing to do this will get your issue *closed without explanation*. (THIS ISSUE TEMPLATE WAS TAKEN FROM [GEODE WITH PERMISSION!](https://github.com/geode-sdk/geode/issues/2092#event-26352819797))
+        Failing to do this will get your issue *closed without explanation*. (THIS ISSUE TEMPLATE WAS TAKEN FROM [GEODE WITH PERMISSION!](https://github.com/geode-sdk/geode/issues/2092#issuecomment-4626537914))
       options:
         - label: I confirm that this feature is NOT related to a mod but directly to the mod manager itself.
           required: true
