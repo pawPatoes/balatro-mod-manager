@@ -32,14 +32,6 @@ body:
     validations:
       required: true
   - type: textarea
-    id: mods
-    attributes:
-      label: Mods Installed
-      description: The mods and their respective versions used when this bug was encountered. If you were not using mods, please leave this field blank.
-      placeholder: "Example: Mod v1.0.0, Mod v0.1.0"
-    validations:
-      required: false
-  - type: textarea
     id: expected
     attributes:
       label: Expected Behavior
