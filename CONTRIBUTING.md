@@ -10,16 +10,11 @@ git clone https://github.com/skyline69/balatro-mod-manager
 2. After changes are made, [This tab](https://github.com/user-attachments/assets/c4298d17-88a3-4092-98dd-c12f772425b7) will appear, click "contribute" then "open pull request"
 3. Wait for reviewers to review & accept your changes.
 
-# Contributing rules
-1. Don't contribute meaningless things.<!-- u can change this if u want :D -->
-2. Don't contribute anything with malware in it.
-3. Don't add any sort of watermark if you edited a text file.
-
 # How to remove your mod
-Fork the [***index***](https://github.com/skyline69/balatro-mod-index) repository. (If you haven't already)
+Fork the ***index*** repository. (If you haven't already)
 ```bash
 git clone https://github.com/skyline69/balatro-mod-index
 ```
 1. Find your mod folder.
 2. Delete it.
-3. [This tab](https://github.com/user-attachments/assets/c4298d17-88a3-4092-98dd-c12f772425b7) will appear, click "contribute" then "open pull request", make sure to include a reason for removing your mod!
+3. [This tab](https://github.com/user-attachments/assets/c4298d17-88a3-4092-98dd-c12f772425b7) will appear, click "contribute" then "open pull request", make sure to include a reason for removing your mod.
