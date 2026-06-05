@@ -5,7 +5,7 @@
 
   const HELPER_URL = "https://bmi-helper.dasguney.com/";
   const INDEX_REPO_URL = "https://github.com/skyline69/Balatro-Mod-Index";
-  const README_URL = "https://github.com/skyline69/balatro-mod-index/blob/main/README.md";
+  const README_URL = `${INDEX_REPO_URL}/blob/main/README.md`;
 
   const open = async (url: string) => {
     try {
@@ -33,7 +33,7 @@
       <div>
         <h3>How it works</h3>
         <ol>
-          <li>Read the Submission rules.</li>
+          <li>Read the submission rules.</li>
           <li>Open the Submission Helper in your browser.</li>
           <li>Fill in your mod's details (name, author, repository, etc.).</li>
           <li>The helper prepares a submission to the mod index for you.</li>
@@ -41,16 +41,24 @@
         </ol>
       </div>
       <div class="button-container">
-        <button class="submit-button" on:click={() => open(HELPER_URL)}>
-          <ExternalLink size={20} />
-          <span>Open Submission Helper</span>
-        </button>
-      <div class="button-container">
-        <button class="readme-button" on:click={() => open(README_URL)}>
+        <button
+          class="action-button readme-button"
+          on:click={() => open(README_URL)}
+        >
           <ExternalLink size={20} />
           <span>Read Submission Rules</span>
         </button>
-        <button class="repo-button" on:click={() => open(INDEX_REPO_URL)}>
+        <button
+          class="action-button submit-button"
+          on:click={() => open(HELPER_URL)}
+        >
+          <ExternalLink size={20} />
+          <span>Open Submission Helper</span>
+        </button>
+        <button
+          class="action-button repo-button"
+          on:click={() => open(INDEX_REPO_URL)}
+        >
           <Github size={20} />
           <span>View Mod Index Repo</span>
         </button>
@@ -145,11 +153,9 @@
     margin: 1rem 0;
   }
 
-  .submit-button {
-    background-color: #fdcf51;
+  .action-button {
     border: 4px solid #f7f1e4;
     border-radius: 8px;
-    color: #000;
     padding: 0.5rem 1rem;
     font-family: "M6X11", sans-serif;
     font-size: 1.2rem;
@@ -161,68 +167,41 @@
     align-items: center;
     gap: 0.5rem;
     position: relative;
+  }
+
+  .action-button:hover {
+    transform: scale(1.05);
+  }
+
+  .action-button:active {
+    transform: scale(0.95);
+  }
+
+  .submit-button {
+    background-color: #fdcf51;
+    color: #000;
   }
 
   .submit-button:hover {
     background-color: #fde700;
-    transform: scale(1.05);
   }
 
-  .submit-button:active {
-    transform: scale(0.95);
-  }
   .readme-button {
-    background-color: #E10600;
-    border: 4px solid #f7f1e4;
-    border-radius: 8px;
+    background-color: #e10600;
     color: #fff;
-    padding: 0.5rem 1rem;
-    font-family: "M6X11", sans-serif;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    position: relative;
   }
 
   .readme-button:hover {
-    background-color: #32383f;
-    transform: scale(1.05);
-  }
-
-  .readme-button:active {
-    transform: scale(0.95);
+    background-color: #b80500;
   }
 
   .repo-button {
     background-color: #24292f;
-    border: 4px solid #f7f1e4;
-    border-radius: 8px;
     color: #fff;
-    padding: 0.5rem 1rem;
-    font-family: "M6X11", sans-serif;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    position: relative;
   }
 
   .repo-button:hover {
     background-color: #32383f;
-    transform: scale(1.05);
-  }
-
-  .repo-button:active {
-    transform: scale(0.95);
   }
 
   @media (max-width: 1160px) {
@@ -238,9 +217,7 @@
     h3 {
       font-size: 1.5rem;
     }
-    .submit-button,
-    .repo-button,
-    .readme-button{
+    .action-button {
       font-size: 1rem;
       padding: 0.4rem 0.8rem;
     }
