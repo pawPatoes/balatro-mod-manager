@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a Mod Manager bug (not mods themselves) where something is not working as expected in Mod Loader (not mods created by others), which does not crash the game.
+description: Report a Mod Manager bug (not mods themselves) where something is not working as expected in Mod Loader (not mods created by others).
 labels: [ "unverified", "bug" ]
 body:
   - type: checkboxes
